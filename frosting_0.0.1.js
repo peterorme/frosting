@@ -1,7 +1,7 @@
 var frosting = {}
 
 frosting.version = function(){
-	return "Frosting 0.0.1b6"
+	return "Frosting 0.0.1r6"
 }
 
 /**
@@ -101,12 +101,3 @@ frosting.hasTag = function(pid, tag){
 	var test = $.inArray(tag, p.tags);
 	return test > -1;
 }
-
-
-
-
-
-
-
-
-
