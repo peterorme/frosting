@@ -28,3 +28,30 @@ That was easy. Here's how to render the content of the "Banana" passage from ano
 
 	<%= window.story.render("Banana") %> 
 
+
+## Handling a "meta" section (inventory, journals, character sheets, scoring...) + back links
+
+I wanted to do this thing where you can go into some "meta" passages that aren't really part of the story proper - some journal, status, inventory, etc. I cam up with this convention.
+
+#### The `meta` tag convention
+
+** All passages that are outside the story proper, like status, maps, inventory etc, I tag with `meta`. **
+
+This allows me to write logic to find the last "real" position in the story. That means I can e.g. have a side menu that takes you into some "inventory" pages or whatnot, which internally can link to other `meta` pages, and _I can add a link that will close this stuff and take you back to where you are_. 
+
+Inserting this link to close the "meta" pages is as simple as this with **Frosting**:
+
+	<%= frosting.closelink("exit") %>
+
+There's also a method to insert a link to the previous passage, whether or not that was a `meta` passage:
+
+	<%= frosting.backlink("back") %>
+
+Although... I am realizing that actually only makes sense when you are inside a meta tag. If you are in the real world, and enter a dead end with a "back" link, you don't want a back link that takes you into the inventory, you want one that takes you back to the previous real-world passage. But typically you will know the target for that back link when you're writing it, so it's better to just link directly to the target passage. 
+
+
+### Linking to another passage
+
+Inserting a link to another passage programmatically. 
+
+

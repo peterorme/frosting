@@ -15,11 +15,15 @@ frosting.version = function(){
 **/
 
 frosting.linkToPassage = function(idOrName, label){
-	var p = window.story.passage(id);
+
+	var p = window.story.passage(idOrName);
+
 	if (label == undefined){
 		label = p ? p.name : idOrName;
 	}
-	return "<a href='javascript:void(0)' data-passage='" + idOrName + "'>" + label + "</a>";
+	var ref = p ? p.name : idOrName; // keep idOrName for debugging if we can't find the passage
+
+	return "<a href='javascript:void(0)' data-passage='" + ref + "'>" + label + "</a>";
 }
 
 /**
@@ -93,7 +97,7 @@ frosting.closelink = function(name){
  @return true if the passage has that tag, false if it does not, and undefined if the passage does not exist
  **/
 frosting.hasTag = function(pid, tag){
-	var p = window.story.passages[index];
+	var p = window.story.passages[pid];
 
 	if (p == undefined){
 		return undefined;
@@ -101,3 +105,4 @@ frosting.hasTag = function(pid, tag){
 	var test = $.inArray(tag, p.tags);
 	return test > -1;
 }
+
