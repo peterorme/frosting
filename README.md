@@ -6,21 +6,20 @@
 
 ### How to include Frosting in a story
 
-I'm not sure what the best way is. _One_ way is to add this in the first passage: 
+I'm not sure what the best way is. _One_ way is to this in the story javascript: 
 
-	<script> 
-		// import the Frosting library  
+	window.onload = function(){	
+		// import the Frosting library  	
 		var url = "https://rawgit.com/peterorme/frosting/master/frosting_0.0.1.js";
-			
-		$.getScript(url, function(data, textStatus, jqxhr) {
+		
+		$.getScript( url, function(data, textStatus, jqxhr) {
 		  window.frosting = frosting;
 		});
-	</script>
-
+	}
 
 ### How to use methods (with Snowman)
 
-In a passage, you can things like this: 
+In a passage, you can do things like this: 
 
 	<%= frosting.backlink("back") %>
 
@@ -55,6 +54,13 @@ This example also uses `frosting.hasSeen`:
 	<%= frosting.conditionalLink((!frosting.hasSeen("warehouse")), "warehouse", "Check out the warehouse", undefined, "locked") %>
 
 If the player has not (the exclamation point means "not") seen the "warehouse" passage, we insert a link to the "warehouse" passage with the label "Check out the warehouse". If the player _has_ seen that passage, we instead return just the string "locked", with no link.
+
+
+This example has just one link:
+
+	<%= frosting.conditionalLink(s.hasKey, "unlock", "Use the key") %>
+
+This checks that s.hasKey evaluates to true, and if it does, inserts a link to the passage `unlock` with the label "Use the key";
 
 
 **frosting.backlink(label)**
