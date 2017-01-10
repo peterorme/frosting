@@ -56,6 +56,16 @@ Returns a link to the previous passage. If the label is undefined we use the nam
 Returns a link to the previous passage which has not been tagged as `meta`. If the label is undefined we use the name of the passage. 
 
 
+**frosting.hasSeen(idOrPassage)**
+
+Returns true or false depending on whether a passage has been visited. If you don't pass in a parameter (or explicitly pass in undefined), the _current_ passage is used, so you can also use this to check whether it's the first time a passage is shown.
+
+	<% if (!frosting.hasSeen("warehouse")) { %> 
+
+	You have not been to the [[warehouse]].
+
+	<% } %>
+
 
 ### Features and feature flags 
 

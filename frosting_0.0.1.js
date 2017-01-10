@@ -6,7 +6,7 @@ frosting.features = {};
 frosting.features.tagToStyle = true;
 
 frosting.version = function(){
-	return "Frosting 0.0.1r6"
+	return "Frosting 0.0.1r7"
 }
 
 /**
@@ -111,6 +111,33 @@ frosting.hasTag = function(pid, tag){
 	return test > -1;
 }
 
+/** 
+ Checks whether a passage is in the history.
+ 
+ @method hasSeen
+ @param idOrName  the pid or name of a passage (undefined = current passsage)
+ @return  true if the passage is in the history, else false 
+ @throws  {ReferenceError} if the passage cannot be found
+ **/
+frosting.hasSeen = function(idOrName){
+	var psg; // the passage we're interested in
+
+	if (idOrName){
+		psg = window.story.passage(idOrName);
+		if (psg == undefined){
+			throw new ReferenceError("No such passage: " + idOrName);
+		}
+	} else {
+		// use the current passage
+		psg = window.passage;
+	}
+	var index = window.story.history.indexOf(psg.id);
+	var t = index != -1 && index < window.story.history.length-1;
+	if (frosting.debug) console.log("frosting.hasSeen passage " + psg.name + " --> " + t);
+	return t;
+}
+
+/* installs features. This is done automatically */
 frosting.install = function(){
 	// add the passage tags as css classes
 	$(window).on('showpassage', function(e, p){
