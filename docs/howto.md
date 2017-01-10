@@ -9,7 +9,7 @@ This is basically just a notebook where I write down problems I come across, and
 
 In Twine2 you can add tags to each passage. Some other story formats automatically adds these tags as css classes to the passages, so you can use them in style sheets. Snowman doesn't. Here's a little hack to add that feature. 
 
-Add this to the story javascript
+Here's a snippet to do this. You can add this to the story javascript:
 
 	// add the passage tags as css classes
 	$(window).on('showpassage', function(e, p){
@@ -20,6 +20,9 @@ Add this to the story javascript
 		}
 	}); 
 
+In fact, if you are using **Frosting**, you get this for free. You can enable or disable the feature by setting 
+	
+	frosting.features.tagToStyle=true; // or false to disable 
 
 
 ## Render another passage inside a passage

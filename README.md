@@ -56,3 +56,36 @@ Returns a link to the previous passage. If the label is undefined we use the nam
 Returns a link to the previous passage which has not been tagged as `meta`. If the label is undefined we use the name of the passage. 
 
 
+
+### Features and feature flags 
+
+Frosting also adds some other magic. For example, the `tagToStyle` feature adds a CSS class for each passage. 
+
+Such features can be enabled or disabled by setting a boolean flag on the `window.frosting.features` object. 
+
+Enable a feature:
+
+	<% frosting.features.tagToStyle=true; %>
+
+Disable a feature: 
+
+	<% frosting.features.tagToStyle=false; %>
+
+
+### Named features 
+
+**frosting.features.tagToStyle**
+
+This feature adds a css class for each tag a passage has. 
+
+One thing is that it now adds the passage tags as css classes for each passage, so that you can use that in style sheets. 
+
+For example, you could add this to the story Stylesheet: 
+
+	div.meta {
+		border: 2px solid black;
+		padding: 10px;
+	}
+
+If you add the tag "meta" to a passage, that passage will now be displayed with a black border. 
+
