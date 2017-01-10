@@ -21,6 +21,12 @@ frosting.version = function(){
 
 frosting.linkToPassage = function(idOrName, label){
 
+	// if we don't pass in an idOrName, we just return the label, or an empty space if 
+	// the label is also undefined
+	if (!idOrName){
+		return label ? label : "";
+	}
+
 	var p = window.story.passage(idOrName);
 
 	if (label == undefined){
@@ -48,9 +54,9 @@ frosting.linkToPassage = function(idOrName, label){
 
 frosting.conditionalLink = function(condition, trueIdOrName, trueLabel, falseIdOrName, falseLabel){
 	if (condition){
-		return frosting.linkToPassage(trueIdOrPassage, trueLabel);
+		return frosting.linkToPassage(trueIdOrName, trueLabel);
 	} else {
-		return frosting.linkToPassage(falseIdOrPassage, falseLabel);
+		return frosting.linkToPassage(falseIdOrName, falseLabel);
 	}
 }
 

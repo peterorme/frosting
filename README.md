@@ -45,6 +45,17 @@ For example, this one-liner will check a variable `window.story.state.hasKey`, o
 
 The condition can be a calculation, like `(s.coins > 5)`. 
 
+All parameters except the condition are optional (that is, you can pass in `undefined`).
+Passing in undefined instead of a passage will result in just the label rather than a link. 
+Passing in undefined instead of a label means use the name of the passage as a label. 
+
+
+This example also uses `frosting.hasSeen`: 
+
+	<%= frosting.conditionalLink((!frosting.hasSeen("warehouse")), "warehouse", "Check out the warehouse", undefined, "locked") %>
+
+If the player has not (the exclamation point means "not") seen the "warehouse" passage, we insert a link to the "warehouse" passage with the label "Check out the warehouse". If the player _has_ seen that passage, we instead return just the string "locked", with no link.
+
 
 **frosting.backlink(label)**
 
