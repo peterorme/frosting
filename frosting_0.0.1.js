@@ -1,5 +1,10 @@
 var frosting = {}
 
+frosting.features = {};
+
+/* Enables setting css classes from passage tags */
+frosting.features.tagToStyle = true;
+
 frosting.version = function(){
 	return "Frosting 0.0.1r6"
 }
@@ -105,4 +110,19 @@ frosting.hasTag = function(pid, tag){
 	var test = $.inArray(tag, p.tags);
 	return test > -1;
 }
+
+frosting.install = function(){
+	// add the passage tags as css classes
+	$(window).on('showpassage', function(e, p){
+		if (frosting.features.tagToStyle){
+			var tags = p.passage.tags;
+			$("div#passage").removeClass();
+			for (var i = 0; i < tags.length; i++) {
+				$("div#passage").addClass(tags[i]);
+			}
+		}
+	}); 
+}
+
+frosting.install();
 
