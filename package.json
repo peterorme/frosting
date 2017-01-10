@@ -1,0 +1,25 @@
+{
+  "name": "frosting",
+  "version": "0.0.2",
+  "description": "Adding power to Twine 2 + Snowman",
+  "main": "gulpfile.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterorme/frosting.git"
+  },
+  "author": "Peter Orme",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peterorme/frosting/issues"
+  },
+  "homepage": "https://github.com/peterorme/frosting#readme"
+}
