@@ -15,7 +15,7 @@ var paths = {
 	dist: "./dist/"
 }
 
-var LIB_VERSION = "0.0.2-SNAPSHOT";
+var LIB_VERSION = "0.0.2";
 var LIB_NAME = "frosting." + LIB_VERSION;
 
 // thus is just a dummy hello function 

@@ -35,8 +35,8 @@ describe ('basic setup', function(){
 
 
 describe ('frosting.version()', function(){
-	it('should return 0.0.2-SNAPSHOT', function(){
-		assert.equal(frosting.version(), "Frosting 0.0.2-SNAPSHOT");
+	it('should return 0.0.2', function(){
+		assert.equal(frosting.version(), "Frosting 0.0.2");
 	})	
 });
 
