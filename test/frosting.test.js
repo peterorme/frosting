@@ -6,9 +6,6 @@ var assert = require('assert');
 // Or shuold you pipe stuff with gulp? Or something else? 
 var frosting = require('../src/frosting.js');
 
-// Should I set up a fixture somehow, or can I just mock/stub stuff here?  
-var window = {};
-
 describe('fake success', function() {
   it('should always succceed', function() {
     assert.equal(1, 1);
@@ -22,16 +19,17 @@ describe('fake failure', function() {
     assert.equal(1, 2);
   });
 });
-*/ 
+*/
 
 describe ('basic setup', function(){
 	it('should define a frosting object', function(){
 		assert(frosting != undefined);
 	});
 
-	// Should it, actually? These are unit tests, so why not? 
-	it('should have a mock window object', function(){
-		assert(window != undefined);
+	// This is run without the mocha-jsdom, so there is no "window" object here, 
+	// or in the frosting context. 
+	it('should not have a mock window object', function(){
+		assert(typeof window == "undefined");
 	});
 });
 
@@ -54,14 +52,5 @@ describe ('frosting.features', function(){
 });
 
 
-describe ('frosting.linkToPassage', function(){
 
-	it('should return the label if the idOrName is undefined', function(){
-		assert.equal(frosting.linkToPassage(undefined, "banana"), "banana");
-	});
-
-	it('should return empty string if both are undefined', function(){
-		assert.equal(frosting.linkToPassage(undefined, undefined), "");
-	});	
-});
 
