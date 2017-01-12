@@ -17,3 +17,10 @@ And then run any of
 And at some point 
 * gulp doc
 	
+
+
+### Kudos
+
+Some of these things have been helpful:
+
+* Julien Renaux, [_Introduction to Gulp.js with practical examples_](https://julienrenaux.fr/2014/05/25/introduction-to-gulp-js-with-practical-examples/)
