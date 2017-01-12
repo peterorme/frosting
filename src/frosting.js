@@ -178,6 +178,12 @@ module.exports = {
 	features: frosting.features, 
 	version: frosting.version,
 	linkToPassage: frosting.linkToPassage,
+	hasSeen: frosting.hasSeen,
+	hasTag: frosting.hasTag,
+	backlink: frosting.backlink,
+	closelink: frosting.closelink,
+	conditionalLink: frosting.conditionalLink,
+	install: frosting.install,
 	func_a : frosting.func_a,
 	func_b : frosting.func_b
 };
