@@ -24,3 +24,5 @@ And at some point
 Some of these things have been helpful:
 
 * Julien Renaux, [_Introduction to Gulp.js with practical examples_](https://julienrenaux.fr/2014/05/25/introduction-to-gulp-js-with-practical-examples/)
+* [mocha-jsdom](https://www.npmjs.com/package/mocha-jsdom)
+
