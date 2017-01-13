@@ -57,7 +57,7 @@ gulp.task('build', function() {
  
   bundleStream
     .pipe(source(package_json.name.toLowerCase() + "." + package_json.version + ".js"))
-    // .pipe(streamify(uglify()))
+    .pipe(streamify(uglify()))
     .pipe(gulp.dest(paths.dist))
 })
 
