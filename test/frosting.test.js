@@ -35,8 +35,10 @@ describe ('basic setup', function(){
 
 
 describe ('frosting.version()', function(){
-	it('should return 0.0.2', function(){
-		assert.equal(frosting.version(), "Frosting 0.0.2");
+	// this will return the name and version defined in package.json, so we will need to update this test when 
+	// that changes.
+	it('should return 0.0.3-SNAPSHOT', function(){
+		assert.equal(frosting.version(), "Frosting 0.0.3-SNAPSHOT");
 	})	
 });
 

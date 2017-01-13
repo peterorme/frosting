@@ -10,6 +10,9 @@
  * @class Frosting 
  **/
 
+var package_json = require('./../package.json')
+
+
 /* 
 This "frosting" is a temporary object. By attaching functions to this object, we can call one function 
 from another. in the main.js we include the module exports of this file as "frosting" again. We could 
@@ -23,7 +26,7 @@ frosting.features = {
 },
 
 frosting.version = function(){
-	return "Frosting 0.0.2";
+	return package_json.name + " " + package_json.version;
 }
 
 /**
