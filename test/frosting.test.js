@@ -52,7 +52,3 @@ describe ('frosting.features', function(){
 		assert(frosting.features.tagToStyle == true);
 	});
 });
-
-
-
-

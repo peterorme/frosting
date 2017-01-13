@@ -2,6 +2,21 @@ var assert = require('assert');
 var jsdom = require('mocha-jsdom')
 var frosting = require('../src/frosting.js');
 
+
+// sets up a mocked window.story.passage function
+var stubPassage = function(w){
+ 	w.story = {
+ 		passage: function(idOrName){
+ 			if (idOrName=="gronk-passage") {
+ 				return {name:"gronk"}
+ 			} else {
+ 				return undefined;
+ 			}
+ 		}
+ 	}
+}
+
+
 describe('testing with mocha-jsdom', function () {
 
 	jsdom()
@@ -37,18 +52,7 @@ describe('testing with mocha-jsdom', function () {
 	});	
 })
 
-// sets up a mocked window.story.passage function
-var stubPassage = function(w){
- 	w.story = {
- 		passage: function(idOrName){
- 			if (idOrName=="gronk-passage") {
- 				return {name:"gronk"}
- 			} else {
- 				return undefined;
- 			}
- 		}
- 	}
-}
+
 
 describe ('frosting.linkToPassage', function(){
 
@@ -84,3 +88,41 @@ describe ('frosting.linkToPassage', function(){
 	})
 
 });
+
+describe ("frosting.backlink", function(){
+
+	jsdom();
+
+	it("should return the label if there is no history", function(){
+
+		window.story = {};
+		window.story.history = [];
+	
+		var link = frosting.backlink("go back");
+		assert.equal(link, "go back");
+	})
+
+
+	it("should return the a link to the previous passage", function(){
+
+		/* this requires a little setting up. Let's just randomly say the history is [1,3,9,5]
+		 * that means the _current_ passage, the last in the history, is number 5. 
+	     * We then expect to use the name of the passage
+		 */
+		window.story = {};
+		window.story.history = [1, 3, 9, 5];
+
+		// mock this to return a simplified passage only for idOrName==9. We know we're only using 
+		// the name of the passage, so let's only include that.
+		window.story.passage = function(idOrName){
+			if (idOrName == 9) {
+				return {"name": "goopfoop"};
+			}
+			return {"name":"unexpected"}
+		}
+		var link = frosting.backlink("turn around");
+		assert.equal(link, "<a href=\'javascript:void(0)\' data-passage=\'goopfoop\'>turn around</a>");
+	})
+
+
+})
