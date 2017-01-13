@@ -35,11 +35,6 @@ describe('testing with mocha-jsdom', function () {
 		assert.equal(frosting.linkToPassage("foo", "bar"), 
 			"<a href=\'javascript:void(0)\' data-passage=\'" + PASSAGE_NAME + "\'>bar</a>");
 	});	
-
-	it('should allow calling one frosting method from another', function(){
-		assert.equal(frosting.func_a(), "monkey");
-		assert.equal(frosting.func_b(), "monkey");
-	})
 })
 
 // sets up a mocked window.story.passage function

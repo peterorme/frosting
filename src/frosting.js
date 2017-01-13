@@ -1,6 +1,17 @@
+/**
+ * Frosting is an extension for Twine 2 (mainly intended for use with the Snowman story format).
+ *
+ * @module frosting 
+ **/
+
+/** 
+ * Actually there is no Frosting class per se, it's just a main frosting object. 
+ * 
+ * @class Frosting 
+ **/
 
 /* 
-This "forsting" is a temporary object. By attaching functions to this object, we can call one function 
+This "frosting" is a temporary object. By attaching functions to this object, we can call one function 
 from another. in the main.js we include the module exports of this file as "frosting" again. We could 
 call this object something else if we wanted to. 
 */
@@ -16,13 +27,13 @@ frosting.version = function(){
 }
 
 /**
- Returns the markup for a link to a passage. If no label is given, the name of the passage
- will be used, if we can find it. 
+Returns the markup for a link to a passage. If no label is given, the name of the passage
+will be used, if we can find it. 
 
- @method linkToPassage
- @param  idOrName {String or Number} ID or name of the passage
- @param  label {String} the text of link, may be left undefined
- @return markup for a link to that passage. 
+@method linkToPassage
+@param  idOrName {String or Number} ID or name of the passage
+@param  label {String} the text of link, may be left undefined
+@return markup for a link to that passage. 
 **/
 
 frosting.linkToPassage = function(idOrName, label){
@@ -44,18 +55,18 @@ frosting.linkToPassage = function(idOrName, label){
 }
 
 /**
- Depending on a boolean condition, return the markup for one of two links. This is intended
- as a one-liner for inserting a link in a passage. This calls linkToPassage, and the logic 
- for resolving undefined labels is the same. 
+Depending on a boolean condition, return the markup for one of two links. This is intended
+as a one-liner for inserting a link in a passage. This calls linkToPassage, and the logic 
+for resolving undefined labels is the same. 
 
- @method conditionalLink {Boolean} used to select the true or false link.
- @param  condition {String or Number} ID or name of the passage to use if condition is true
- @param  trueIdOrName {String or Number} ID or name of the passage to use if condition is true
- @param  trueLabel {String}  label for the link if condition is true
- @param  falseIdOrName {String or Number} ID or name of the passage to use if condition is false
- @param  flaseLabel {String}  label for the link if condition is false
+@method conditionalLink 
+@param  condition {Boolean} used to select the true or false link.
+@param  trueIdOrName {String or Number} ID or name of the passage to use if condition is true
+@param  trueLabel {String}  label for the link if condition is true
+@param  falseIdOrName {String or Number} ID or name of the passage to use if condition is false
+@param  flaseLabel {String}  label for the link if condition is false
 
- @return markup for a link to either passage, depending on the condition.
+@return markup for a link to either passage, depending on the condition.
 **/
 
 frosting.conditionalLink = function(condition, trueIdOrName, trueLabel, falseIdOrName, falseLabel){
@@ -67,13 +78,13 @@ frosting.conditionalLink = function(condition, trueIdOrName, trueLabel, falseIdO
 }
 
 /**
- Returns the markup for a link to the previous passage. Calls linkToPassage and uses the 
- same logic for undefined labels. 
- 
- @method  backlink
- @param   label  the text to use for the link, may be undefined
- @return  the markup for a link
- **/
+Returns the markup for a link to the previous passage. Calls linkToPassage and uses the 
+same logic for undefined labels. 
+
+@method  backlink
+@param   label  the text to use for the link, may be undefined
+@return  the markup for a link
+**/
 
 frosting.backlink = function(label){
 	var id = window.story.history[window.story.history.length-2];
@@ -106,13 +117,13 @@ frosting.closelink = function(name){
 }
 
 /**
- Checks whether a passage has a given tag. 
-  
- @method  hasTag
- @param  pid {Integer}  a passage id
- @param  tag {String} the given tag
- @return true if the passage has that tag, false if it does not, and undefined if the passage does not exist
- **/
+Checks whether a passage has a given tag. 
+
+@method  hasTag
+@param  pid {Integer}  a passage id
+@param  tag {String} the given tag
+@return true if the passage has that tag, false if it does not, and undefined if the passage does not exist
+**/
 frosting.hasTag = function(pid, tag){
 	var p = window.story.passages[pid];
 
@@ -124,13 +135,13 @@ frosting.hasTag = function(pid, tag){
 }
 
 /** 
- Checks whether a passage is in the history.
- 
- @method hasSeen
- @param idOrName  the pid or name of a passage (undefined = current passsage)
- @return  true if the passage is in the history, else false 
- @throws  {ReferenceError} if the passage cannot be found
- **/
+Checks whether a passage is in the history.
+
+@method hasSeen
+@param idOrName  the pid or name of a passage (undefined = current passsage)
+@return  true if the passage is in the history, else false 
+@throws  {ReferenceError} if the passage cannot be found
+**/
 frosting.hasSeen = function(idOrName){
 	var psg; // the passage we're interested in
 
@@ -149,7 +160,11 @@ frosting.hasSeen = function(idOrName){
 	return t;
 }
 
-/* installs features. This is done automatically */
+/** 
+Installs features like the tagToStyle feature. Just call install once to install all the callbacks, 
+and use the frosting.features map to set named features to true or false to enable or disable them. 
+@method  install
+*/
 frosting.install = function(){
 	// add the passage tags as css classes
 	$(window).on('showpassage', function(e, p){
@@ -166,13 +181,6 @@ frosting.install = function(){
 // TODO: figure out a way to auto-install this. 
 // frosting.install();
 
-
-// only for testing setup 
-frosting.func_a = function(){return "monkey"};
-
-// only for testing setup 
-frosting.func_b = function(){return frosting.func_a()}
-
 // this is where we define which methods to expose
 module.exports = {
 	features: frosting.features, 
@@ -183,7 +191,5 @@ module.exports = {
 	backlink: frosting.backlink,
 	closelink: frosting.closelink,
 	conditionalLink: frosting.conditionalLink,
-	install: frosting.install,
-	func_a : frosting.func_a,
-	func_b : frosting.func_b
+	install: frosting.install
 };

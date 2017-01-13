@@ -10,7 +10,7 @@ I'm not sure what the best way is. _One_ way is to this in the story javascript:
 
 	window.onload = function(){	
 		// import the Frosting library  	
-		var url = "https://rawgit.com/peterorme/frosting/master/frosting_0.0.1.js";
+		var url = "https://rawgir.com/peterorme/frosting/blob/master/releases/frosting.0.0.2.js";
 		
 		$.getScript( url, function(data, textStatus, jqxhr) {
 		  window.frosting = frosting;
