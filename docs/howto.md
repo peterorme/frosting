@@ -57,4 +57,46 @@ Although... I am realizing that actually only makes sense when you are inside a 
 
 Inserting a link to another passage programmatically. 
 
+Frosting to the rescue again: 
 
+	<%= frosting.linkToPassage("home") %>
+
+### Adding a side bar (or other UI stuff)
+
+You can do this by modifying the dom from the story javascript and css. Here's one way of getting started.
+
+In the story Javascript:
+
+	// add a sidebar 
+	$('body').prepend('<div id="sidebar">sidebar goes here</div>');
+
+in the story stylesheet:
+
+	#sidebar{
+		position: absolute; 
+		top: 0;
+		bottom: 0; 
+		left: 0;
+		width: 200px; 
+		background: #333;
+		color: white;
+	}
+
+	#passage {
+		position: fixed;
+		top: 0; 
+		left: 200px; /* match width of sidebar */
+		right: 0;
+		bottom: 0;
+		overflow: auto; 
+	}
+
+### Rendering the content of a passage in the sidebar
+
+Here's the kicker. Create a new pasage with the name "sidebar content", and add this in the story javascript: 
+
+	$(window).on('showpassage:after', function(e, p){
+		$("#sidebar").html(window.story.render("sidebar content"));
+	});
+
+So that adds a callback, which will be called after rendering the page. In that callback, there's a jquery selector for the sidebar div, that replaces its html content with the output of rendering the "sidebar content" _passage_. 
